@@ -45,26 +45,46 @@ class Numbers {
     return _sumFirstNHelp(n, 0);
   }
 
-  int _factorialHelp(int n) {
+  int _factorialHelp(int n, int acc) {
     if (n <= 1) {
-      return 1;
+      return acc;
     }
-    return n * _factorialHelp(n - 1);
+    return _factorialHelp(n - 1, n * acc);
   }
 
   int factorialAcc(int n) {
-    return _factorialHelp(n);
+    return _factorialHelp(n, 1);
   }
 
-  int _fibonacciHelp(int n) {
-    if (n <= 1) {
-      return n;
+  int _fibonacciHelp(int n, int acc1, int acc2) {
+    if (n <= 0) {
+      return acc1;
     }
-    return _fibonacciHelp(n - 1) + _fibonacciHelp(n - 2);
+    return _fibonacciHelp(n - 1, acc2, acc1 + acc2);
   }
 
   int fibonacciAcc(int n) {
-    return _fibonacciHelp(n);
+    return _fibonacciHelp(n, 0, 1);
+  }
+
+  int _largestCommonDivisorHelp(int a, int b) {
+    if (b == 0) {
+      return a;
+    }
+    return _largestCommonDivisorHelp(b, a % b);
+  }
+
+  int largestCommonDivisorAcc(int a, int b) {
+    return _largestCommonDivisorHelp(a, b);
+  }
+
+  int _leastCommonMultipleHelp(int a, int b) {
+    int g = _largestCommonDivisorHelp(a, b);
+    return (a * b) ~/ g;
+  }
+
+  int leastCommonMultipleAcc(int a, int b) {
+    return _leastCommonMultipleHelp(a, b);
   }
 
   static int sumFirstNIter(int n) {
