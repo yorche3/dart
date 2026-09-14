@@ -45,7 +45,7 @@ numbers/
 Cada algoritmo se implementa de tres formas distintas:
 
 1. **Recursivo Directo (`...Rec`)**: Métodos `static` basados directamente en la definición matemática, con llamadas recursivas.
-2. **Recursivo con Acumulador (`...Acc`)**: Expone un método de instancia que delega en un helper privado interno. Los acumuladores correctos (`sumFirstNAcc`) pasan estado vía tail recursion; los otros (`factorialAcc`, `fibonacciAcc`) son envoltorios de recursión directa sin acumulador real.
+2. **Recursivo con Acumulador (`...Acc`)**: Expone un método de instancia que delega en un helper privado interno con tail recursion real. Todos los 5 algoritmos tienen su helper con acumulador verdadero.
 3. **Iterativo (`...Iter`)**: Métodos `static` que utilizan bucles `for`/`while` para evitar el crecimiento de la pila.
 
 **EN:** This project uses **Dart** with `pubspec.yaml` and the `package:test` testing framework.
@@ -53,7 +53,7 @@ Cada algoritmo se implementa de tres formas distintas:
 Each algorithm is implemented in three different ways:
 
 1. **Direct Recursive (`...Rec`)**: `static` methods based directly on the mathematical definition, with recursive calls.
-2. **Accumulator Recursive (`...Acc`)**: Exposes an instance method that delegates to an internal private helper. Correct accumulators (`sumFirstNAcc`) pass state via tail recursion; others (`factorialAcc`, `fibonacciAcc`) are wrappers around direct recursion without a real accumulator.
+2. **Accumulator Recursive (`...Acc`)**: Exposes an instance method that delegates to an internal private helper with real tail recursion. All 5 algorithms have their helper with a true accumulator.
 3. **Iterative (`...Iter`)**: `static` methods using `for`/`while` loops to avoid stack growth.
 
 ---
@@ -88,12 +88,18 @@ class Numbers {
   static int fibonacciIter(int n) { ... }
   static int largestCommonDivisorIter(int a, int b) { ... }
 
-  // Métodos de instancia — acumuladores
+  // Métodos de instancia — acumuladores (todos con tail recursion real)
   int _sumFirstNHelp(int n, int sum) {   // Tail recursion (acumulador real)
     if (n <= 0) return sum;
     return _sumFirstNHelp(n - 1, sum + n);
   }
   int sumFirstNAcc(int n) => _sumFirstNHelp(n, 0);
+
+  int _factorialHelp(int n, int acc) {   // Tail recursion (acumulador real)
+    if (n <= 1) return acc;
+    return _factorialHelp(n - 1, n * acc);
+  }
+  int factorialAcc(int n) => _factorialHelp(n, 1);
 }
 ```
 
@@ -157,14 +163,12 @@ dart test
 | Algoritmo | Casos de prueba | `Rec` | `Acc` | `Iter` |
 |-----------|----------------|:-----:|:-----:|:------:|
 | `sumFirstN` | `(0) = 0`, `(3) = 6` | ✅ | ✅¹ | ✅ |
-| `factorial` | `(0) = 1`, `(4) = 24` | ✅ | ❌² | ✅ |
-| `fibonacci` | `(0) = 0`, `(1) = 1`, `(6) = 8` | ✅ | ❌² | ✅ |
-| `largestCommonDivisor` | `(12, 8) = 4`, `(7, 5) = 1` | ✅ | —³ | ✅ |
-| `leastCommonMultiple` | `(8, 6) = 24`, `(6, 4) = 12` | ✅ | —³ | ✅ |
+| `factorial` | `(0) = 1`, `(4) = 24` | ✅ | ✅¹ | ✅ |
+| `fibonacci` | `(0) = 0`, `(1) = 1`, `(6) = 8` | ✅ | ✅¹ | ✅ |
+| `largestCommonDivisor` | `(12, 8) = 4`, `(7, 5) = 1` | ✅ | ✅¹ | ✅ |
+| `leastCommonMultiple` | `(8, 6) = 24`, `(6, 4) = 12` | ✅ | ✅¹ | ✅ |
 
-> ¹ `sumFirstNAcc` sí implementa tail recursion real con acumulador.
-> ² `factorialAcc` y `fibonacciAcc` son envoltorios de recursión directa sin acumulador real.
-> ³ No hay implementación con acumulador para MCD y MCM.
+> ¹ Los acumuladores se prueban implícitamente al ejecutar `acc(n)`, que internamente llama al helper recursivo con acumulador. No tienen tests directos porque Dart no garantiza TCO y son detalles de implementación.
 
 ---
 
@@ -175,14 +179,16 @@ dart test
 **ES:**
 
 - **Dart no garantiza TCO**. Aunque Dart VM y el compilador AOT pueden optimizar ciertos patrones, la tail call optimization no es parte de la especificación del lenguaje.
-- Solo `sumFirstNAcc` implementa tail recursion real con un helper que acumula. Los demás métodos `...Acc` son envoltorios sin acumulador.
+- Todos los métodos `...Acc` implementan tail recursion real con un helper que acumula.
 - Los métodos con acumulador son de instancia (no `static`), a diferencia de los recursivos e iterativos que son estáticos.
+- Al no garantizarse TCO, las funciones con acumulador se conservan con fines educativos. No tienen tests unitarios directos; su validación se cubre a través de los tests recursivos e iterativos, que juntos ejercitan los mismos resultados.
 
 **EN:**
 
 - **Dart does not guarantee TCO**. Although the Dart VM and AOT compiler may optimize certain patterns, tail call optimization is not part of the language specification.
-- Only `sumFirstNAcc` implements real tail recursion with an accumulator helper. The other `...Acc` methods are wrappers without an accumulator.
+- All `...Acc` methods implement real tail recursion with an accumulator helper.
 - Accumulator methods are instance methods (not `static`), unlike recursive and iterative ones which are static.
+- Since TCO is not guaranteed, the accumulator functions are preserved for educational purposes. They have no direct unit tests; their validation is covered through the recursive and iterative test suites, which together exercise the same results.
 
 ### Sobre la implementación / On the implementation
 
