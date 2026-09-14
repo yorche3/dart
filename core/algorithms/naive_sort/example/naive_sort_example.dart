@@ -1,6 +1,5 @@
 import 'package:naive_sort/naive_sort.dart';
 
 void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  print(NaiveSort.selectionSort([5, 2, 9, 1, 5, 6]));
 }
