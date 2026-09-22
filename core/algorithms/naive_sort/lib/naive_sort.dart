@@ -1,8 +1,5 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+// naive_sort — ordenamientos elementales O(n^2).
+// Punto de entrada de la librería: expone la clase NaiveSort de src/naive_sort_base.dart.
 library;
 
 export 'src/naive_sort_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
