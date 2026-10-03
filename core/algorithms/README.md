@@ -11,6 +11,7 @@ Los módulos de esta fase usan **indicadores de fallo compatibles con el lenguaj
 | Módulo | Especificación | Enfoque | Tests | Estado |
 |--------|---------------|---------|:-----:|:------:|
 | [`naive_sort/`](naive_sort/) | [05_Naive_Sort](https://yorche3.github.io/programming_languages/core/algorithms/05_Naive_Sort/) | `dart test` + `pubspec.yaml` + `package:test` | 3 | ✅ |
+| [`data_structures_basics/`](data_structures_basics/) | [06_Data_Structures_Basics](https://yorche3.github.io/programming_languages/core/algorithms/06_Data_Structures_Basics/) | `dart test` + `pubspec.yaml` + `package:test` | 4 | ✅ |
 
 ---
 
@@ -18,6 +19,16 @@ Los módulos de esta fase usan **indicadores de fallo compatibles con el lenguaj
 
 ```text
 algorithms/
+├── data_structures_basics/       # 06_Data_Structures_Basics
+│   ├── pubspec.yaml
+│   ├── lib/
+│   │   ├── data_structures_basics.dart  # Export público
+│   │   └── src/data_structures_basics_base.dart  # Node, LinkedList, Stack, Queue
+│   ├── test/
+│   │   ├── run_tests.dart
+│   │   └── data_structures_basics_test.dart  # 4 tests
+│   ├── example/
+│   └── README.md
 └── naive_sort/                   # 05_Naive_Sort
     ├── pubspec.yaml
     ├── lib/
@@ -56,6 +67,10 @@ algorithms/
 ```bash
 # Naive Sort Tests
 cd naive_sort
+dart pub get && dart test
+
+# Data Structures Basics Tests
+cd data_structures_basics
 dart pub get && dart test
 ```
 
