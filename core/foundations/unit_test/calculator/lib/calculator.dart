@@ -1,8 +1,6 @@
-/// Support for doing something awesome.
+/// Módulo `calculator` de la especificación 03_Unit_Test_Calculator.
 ///
-/// More dartdocs go here.
+/// Expone las cinco operaciones aritméticas con implementaciones educativas.
 library;
 
 export 'src/calculator_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
