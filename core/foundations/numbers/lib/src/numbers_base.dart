@@ -1,6 +1,8 @@
-// TODO: Put public facing types in this file.
-
-/// Checks if you are awesome. Spoiler: you are.
+/// Los cinco algoritmos del módulo `Numbers` en sus tres enfoques.
+///
+/// `sumFirstNRec`, `factorialRec`, `fibonacciRec`, `largestCommonDivisorRec` y
+/// `leastCommonMultipleRec` son recursión directa; las variantes `Acc` llevan
+/// acumulador y las `Iter` resuelven con bucles.
 class Numbers {
   static int sumFirstNRec(int n) {
     if (n <= 0) {
