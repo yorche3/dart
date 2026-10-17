@@ -1,6 +1,7 @@
-// TODO: Put public facing types in this file.
-
-/// Checks if you are awesome. Spoiler: you are.
+/// Las cinco operaciones del módulo `Calculator`.
+///
+/// `multiplication` se construye con suma repetitiva, `division` con resta
+/// repetitiva y `modulus` combinando ambas.
 class Calculator {
   static int addition(int a, int b) => a + b;
 
@@ -22,10 +23,9 @@ class Calculator {
     }
     return quotient;
   }
-  
+
   static int modulus(int a, int b) {
     int quotient = division(a, b);
     return subtraction(a, multiplication(b, quotient));
   }
 }
-

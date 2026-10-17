@@ -1,5 +1,5 @@
 name: calculator
-description: A starting point for Dart libraries or applications.
+description: Módulo calculator de la especificación 03_Unit_Test_Calculator en Dart, con implementaciones educativas y suite de pruebas.
 version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
