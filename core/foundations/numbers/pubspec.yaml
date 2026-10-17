@@ -1,5 +1,5 @@
 name: numbers
-description: A starting point for Dart libraries or applications.
+description: Módulo numbers de la especificación 04_Numbers en Dart, con los cinco algoritmos en sus tres enfoques y suites por enfoque.
 version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 

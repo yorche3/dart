@@ -1,8 +1,7 @@
-/// Support for doing something awesome.
+/// Módulo `numbers` de la especificación 04_Numbers.
 ///
-/// More dartdocs go here.
+/// Expone los cinco algoritmos numéricos en sus tres enfoques (`_rec`, `_acc` e
+/// `_ite`).
 library;
 
 export 'src/numbers_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
