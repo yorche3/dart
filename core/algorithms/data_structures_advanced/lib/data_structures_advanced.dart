@@ -1,8 +1,4 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// Data Structures Advanced — Node with multiple links, trees and graphs.
 library;
 
 export 'src/data_structures_advanced_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
