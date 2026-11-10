@@ -12,6 +12,7 @@ Los módulos de esta fase usan **indicadores de fallo compatibles con el lenguaj
 |--------|---------------|---------|:-----:|:------:|
 | [`naive_sort/`](naive_sort/) | [05_Naive_Sort](https://yorche3.github.io/programming_languages/core/algorithms/05_Naive_Sort/) | `dart test` + `pubspec.yaml` + `package:test` | 3 | ✅ |
 | [`data_structures_basics/`](data_structures_basics/) | [06_Data_Structures_Basics](https://yorche3.github.io/programming_languages/core/algorithms/06_Data_Structures_Basics/) | `dart test` + `pubspec.yaml` + `package:test` | 4 | ✅ |
+| [`data_structures_advanced/`](data_structures_advanced/) | [07_Data_Structures_Advanced](https://yorche3.github.io/programming_languages/core/algorithms/07_Data_Structures_Advanced/) | `dart test` + `pubspec.yaml` + `package:test` | 23 | ✅ |
 
 ---
 
@@ -19,6 +20,19 @@ Los módulos de esta fase usan **indicadores de fallo compatibles con el lenguaj
 
 ```text
 algorithms/
+├── data_structures_advanced/     # 07_Data_Structures_Advanced
+│   ├── pubspec.yaml
+│   ├── lib/
+│   │   ├── data_structures_advanced.dart  # Export público
+│   │   └── src/data_structures_advanced_base.dart  # Node, TreeNode, BinaryTree, Graph
+│   ├── test/
+│   │   ├── run_tests.dart
+│   │   └── data_structures_advanced_test.dart  # 23 tests
+│   ├── example/
+│   │   └── data_structures_advanced_example.dart
+│   ├── analysis_options.yaml
+│   ├── .gitignore
+│   └── README.md
 ├── data_structures_basics/       # 06_Data_Structures_Basics
 │   ├── pubspec.yaml
 │   ├── lib/
@@ -71,6 +85,10 @@ dart pub get && dart test
 
 # Data Structures Basics Tests
 cd data_structures_basics
+dart pub get && dart test
+
+# Data Structures Advanced Tests
+cd data_structures_advanced
 dart pub get && dart test
 ```
 
